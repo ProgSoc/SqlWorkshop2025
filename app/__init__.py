@@ -19,7 +19,7 @@ def create_app():
   
   # Load the app configuration
   app.config.from_mapping(
-    DATABASE=os.path.join(app.instance_path, 'todo.db'),
+    DATABASE = os.path.join(app.instance_path, 'todo.db'),
   )
   
   # Register teardown callback

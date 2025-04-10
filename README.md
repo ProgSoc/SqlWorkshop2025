@@ -1,4 +1,4 @@
-# Intro to SQL Workshop
+# Introduction to SQL Workshop
 
 This workshop is designed for people who have little or no experience with SQL.  Python is used for the examples and exercises, but the concepts are applicable to other languages as well. SQLite3 is used as the database engine, which is a lightweight, serverless SQL database engine that is included with Python.
 
@@ -58,11 +58,19 @@ SqlWorkshop2025/
 
 ### Opening the project
 
-This project has [Dev Container support](https://code.visualstudio.com/docs/devcontainers/containers), so it will be be setup automatically if you open it in Github Codespaces or in local VS Code with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
-
-If you're not using one of those options for opening the project, then you'll need to:
-
 1. Create a [Python virtual environment](https://docs.python.org/3/tutorial/venv.html#creating-virtual-environments) and activate it.
+
+    ```shell
+    python3 -m venv .venv
+    ```
+
+    ```shell
+    # On Windows
+    .venv\Scripts\activate
+
+    # On MacOS/Linux
+    source .venv/bin/activate
+    ```
 
 2. Install requirements:
 
@@ -78,5 +86,4 @@ If you're not using one of those options for opening the project, then you'll ne
     python3 -m flask run --port 5000 --debug
     ```
 
-2. Click '<http://127.0.0.1:5000>' in the terminal, which should open the website in a new tab.
-3. Try the index page, try '/hello?name=yourname', and try other paths.
+2. Click '<http://127.0.0.1:5000>' in the terminal. The website should be opened in a new browser tab.
