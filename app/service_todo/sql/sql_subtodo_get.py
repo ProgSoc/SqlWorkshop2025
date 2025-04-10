@@ -21,7 +21,8 @@ def sql_subtodo_get(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    SELECT * FROM subtodo
+    WHERE id = ?;
     """,
     (subtodo_id, )
   )

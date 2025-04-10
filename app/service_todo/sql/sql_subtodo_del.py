@@ -18,7 +18,8 @@ def sql_subtodo_del(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    DELETE FROM subtodo
+    WHERE id = ?;
     """,
     (subtodo_id, )
   )

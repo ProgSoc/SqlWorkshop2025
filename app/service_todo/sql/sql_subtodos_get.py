@@ -23,19 +23,26 @@ def sql_subtodos_get(
   # title or desc. The subtodos that are created_at most recently should be returned first.
   
   if search_query is None:
-    like_param = f'YOUR_LIKE_PARAM_HERE'
+    like_param = f'%'
   else:
-    like_param = f'YOUR_LIKE_PARAM_HERE'
+    like_param = f'%{search_query}%'
   
   if completed is None:
     sql_query = """
-      YOUR_SQL_QUERY_HERE
+      SELECT * FROM subtodo
+      WHERE todo_id = ?
+        AND (title LIKE ? OR desc LIKE ?)
+      ORDER BY created_at DESC;
       """
     params = (todo_id, like_param, like_param)
   else:
     # Add the completed filter to the SQL query
     sql_query = """
-      YOUR_SQL_QUERY_HERE
+      SELECT * FROM subtodo
+      WHERE todo_id = ?
+        AND (title LIKE ? OR desc LIKE ?)
+        AND completed = ?
+      ORDER BY created_at DESC;
       """
     params = (todo_id, like_param, like_param, completed)
   

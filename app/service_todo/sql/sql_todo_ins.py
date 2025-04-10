@@ -19,7 +19,8 @@ def sql_todo_ins(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    INSERT INTO todo (id, title, desc, completed)
+    VALUES (?, ?, ?, ?);
     """,
     (todo['id'], todo['title'], todo['desc'], todo['completed'])
   )  

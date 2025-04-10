@@ -20,7 +20,9 @@ def sql_todo_upd(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    UPDATE todo
+    SET title = ?, desc = ?, completed = ?, updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?;
     """,
     (todo['title'], todo['desc'], todo['completed'], todo['id'])
   )

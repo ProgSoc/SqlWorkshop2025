@@ -20,7 +20,9 @@ def sql_subtodo_upd(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    UPDATE subtodo
+    SET title = ?, desc = ?, completed = ?, updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?;
     """,
     (subtodo['title'], subtodo['desc'], subtodo['completed'], subtodo['id'])
   )

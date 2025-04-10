@@ -19,7 +19,8 @@ def sql_subtodo_ins(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    INSERT INTO subtodo (id, todo_id, title, desc, completed)
+    VALUES (?, ?, ?, ?, ?);
     """,
     (subtodo['id'], subtodo['todo_id'], subtodo['title'], subtodo['desc'], subtodo['completed'])
   )  

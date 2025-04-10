@@ -18,7 +18,8 @@ def sql_todo_del(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    DELETE FROM todo
+    WHERE id = ?;
     """,
     (todo_id, )
   )
