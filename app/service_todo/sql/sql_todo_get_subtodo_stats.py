@@ -21,7 +21,11 @@ def sql_todo_get_subtodo_stats(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    SELECT
+      COUNT(*) AS total,
+      SUM(completed) AS completed
+    FROM subtodo
+    WHERE todo_id = ?;
     """,
     (todo_id, )
   )

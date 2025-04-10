@@ -21,7 +21,8 @@ def sql_todo_get(
   cursor_res = sql_exec(
     conn,
     """
-    YOUR_SQL_QUERY_HERE
+    SELECT * FROM todo
+    WHERE id = ?;
     """,
     (todo_id, )
   )
