@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo CRUD App</title>
+</head>
+<body
+  style="background-color: #f0f0f0; color: #333;"
+>
+  <div
+    id="main-container"
+    style="display: flex; flex-direction: column; align-items: center; padding-top: 10px; width: 100%; height: 100vh;"
+  >
+    <h1 style="text-align: left; width: 80%; margin: 20px 0;">
+      Todos
+    </h1>
+
+    <!-- Filter and Search Form -->
+    <form id="search-todos" style="display: flex; gap: 10px; width: 80%;">
+      <label for="filter">Status:</label>
+      <select name="filter" id="filter">
+        <option value="all" {% if filter_status=='all' %}selected{% endif %}>All</option>
+        <option value="completed" {% if filter_status=='completed' %}selected{% endif %}>Completed</option>
+        <option value="pending" {% if filter_status=='pending' %}selected{% endif %}>Pending</option>
+      </select>
+  
+      <label for="search">Search:</label>
+      <input type="text" name="search" id="search" placeholder="Enter text">
+      <button type="submit">Apply</button>
+    </form>
+    
+    <!-- Form to add a new todo -->
+    <div 
+      style="display: flex; flex-direction: column; gap: 10px; width: 80%;"
+    >
+      <form id="add-todo-form" style="gap: 10px;">
+        <p style="font-weight: bold; margin-bottom: 5px">Add a new Todo:</p>
+        <input type="text" id="new-todo-title" placeholder="Title" required />
+        <input type="text" id="new-todo-desc" placeholder="Description" />
+        <label>
+          Completed
+          <input type="checkbox" id="new-todo-completed">
+        </label>
+        <button type="submit">Add Todo</button>
+      </form>
+    </div>
+
+    <hr style="margin: 10px 0; border: 0.5px solid #ccc; width: 80%;">
+
+    <!-- List of todos -->
+    <div
+      style="display: flex; flex-direction: column; gap: 10px; width: 80%;"
+    >
+      <ul id="todo-list"></ul>
+    </div>
+  </div>
+  <script src="./static/index.js"></script>
+</body>
+</html>
