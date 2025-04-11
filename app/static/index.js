@@ -26,6 +26,7 @@ async function renderSubtodos(todoId, subtodoListEl) {
               value="${subtodo.due_date ? formatDateToDatetimeLocal(new Date(subtodo.due_date)) : ''}"
             >
           </label>
+          <!-- TODO: Add edit subtodo due date input below -->
           <button class="update-subtodo-btn">Update Subtodo</button>
           <button class="delete-subtodo-btn">Delete Subtodo</button>
         </div>
