@@ -51,7 +51,7 @@ def subtodo_upd(
   # All subtodos are complete if completed count equals total.
   new_completed = True if stats['completed'] == stats['total'] else False
   
-  if todo['completed'] != new_completed:
+  if todo['completed'] != new_completed and stats['total'] > 0:
     todo['completed'] = new_completed
     
     todo_res = sql_todo_upd({
