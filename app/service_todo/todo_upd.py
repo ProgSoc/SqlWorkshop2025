@@ -4,6 +4,8 @@ from http import HTTPStatus
 
 from app.type_defs import BaseResBody, Todo
 from .sql.sql_todo_upd import sql_todo_upd
+from .sql.sql_subtodos_get import sql_subtodos_get
+from .sql.sql_subtodo_upd import sql_subtodo_upd
 from . import service_todo_bp
 
 class _ReqBody(TypedDict):
@@ -28,6 +30,34 @@ def todo_upd(
       data = None,
       error = err
     ))
+
+  if data['todo']['completed'] == True:
+    subtodos_res = sql_subtodos_get({
+      'todo_id': id,
+      'completed': None,
+      'search_query': None,
+    })
+    if subtodos_res.is_err():
+      err = subtodos_res.unwrap_err()
+      return jsonify(BaseResBody[_ResBody](
+        status = HTTPStatus.INTERNAL_SERVER_ERROR,
+        data = None,
+        error = err
+      ))
+    subtodos = subtodos_res.unwrap()
+    
+    for subtodo in subtodos:
+      subtodo['completed'] = True
+      subtodo_res = sql_subtodo_upd({
+        'subtodo': subtodo,
+      })
+      if subtodo_res.is_err():
+        err = subtodo_res.unwrap_err()
+        return jsonify(BaseResBody[_ResBody](
+          status = HTTPStatus.INTERNAL_SERVER_ERROR,
+          data = None,
+          error = err
+        ))
 
   return jsonify(BaseResBody[_ResBody](
     status = HTTPStatus.NO_CONTENT,
