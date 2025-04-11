@@ -21,10 +21,10 @@ def sql_subtodo_upd(
     conn,
     """
     UPDATE subtodo
-    SET title = ?, desc = ?, completed = ?, updated_at = CURRENT_TIMESTAMP
+    SET title = ?, desc = ?, completed = ?, due_date = ?, updated_at = CURRENT_TIMESTAMP
     WHERE id = ?;
     """,
-    (subtodo['title'], subtodo['desc'], subtodo['completed'], subtodo['id'])
+    (subtodo['title'], subtodo['desc'], subtodo['completed'], subtodo['due_date'], subtodo['id'])
   )
   if cursor_res.is_err():
     err = cursor_res.unwrap_err()

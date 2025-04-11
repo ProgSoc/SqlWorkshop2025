@@ -1,5 +1,6 @@
 from typing import TypedDict, Optional, TypeVar, Generic
 from http import HTTPStatus
+from datetime import datetime
 
 T = TypeVar('T')
 
@@ -8,6 +9,7 @@ class Todo(TypedDict):
   title: str
   desc: Optional[str]
   completed: bool
+  due_date: Optional[datetime]
 
 class TodoSubtodoStats(TypedDict):
   total: int
@@ -19,6 +21,7 @@ class SubTodo(TypedDict):
   title: str
   desc: Optional[str]
   completed: bool
+  due_date: Optional[datetime]
 
 # Response body types
 

@@ -19,10 +19,10 @@ def sql_subtodo_ins(
   cursor_res = sql_exec(
     conn,
     """
-    INSERT INTO subtodo (id, todo_id, title, desc, completed)
-    VALUES (?, ?, ?, ?, ?);
+    INSERT INTO subtodo (id, todo_id, title, desc, completed, due_date)
+    VALUES (?, ?, ?, ?, ?, ?);
     """,
-    (subtodo['id'], subtodo['todo_id'], subtodo['title'], subtodo['desc'], subtodo['completed'])
+    (subtodo['id'], subtodo['todo_id'], subtodo['title'], subtodo['desc'], subtodo['completed'], subtodo['due_date'])
   )  
   if cursor_res.is_err():
     err = cursor_res.unwrap_err()

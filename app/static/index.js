@@ -21,6 +21,11 @@ async function renderSubtodos(todoId, subtodoListEl) {
             <input type="checkbox" class="edit-subtodo-completed" ${subtodo.completed ? 'checked' : ''}>
           </label>
           <!-- TODO: Add edit subtodo due date input below -->
+          <label>Due Date
+            <input type="datetime-local" class="edit-subtodo-due-date"
+              value="${subtodo.due_date ? formatDateToDatetimeLocal(new Date(subtodo.due_date)) : ''}"
+            >
+          </label>
           <button class="update-subtodo-btn">Update Subtodo</button>
           <button class="delete-subtodo-btn">Delete Subtodo</button>
         </div>
@@ -83,6 +88,11 @@ async function renderTodos() {
             <input type="checkbox" class="edit-completed" ${todo.completed ? 'checked' : ''}>
           </label>
           <!-- TODO: Add edit todo due date input below -->
+          <label>Due Date
+            <input type="datetime-local" class="edit-todo-due-date"
+              value="${todo.due_date ? formatDateToDatetimeLocal(new Date(todo.due_date)) : ''}"
+            >
+          </label>
           <button class="update-btn">Update</button>
           <button class="delete-btn">Delete</button>
         </div>
@@ -97,6 +107,9 @@ async function renderTodos() {
               <input type="checkbox" class="new-subtodo-completed">
             </label>
             <!-- TODO: Add new subtodo due date input below -->
+            <label>Due Date
+              <input type="datetime-local" class="new-subtodo-due-date">
+            </label>
             <button type="submit">Add Subtodo</button>
           </form>
           <hr style="margin: 10px 0; border: 0.5px solid #ccc; width: 100%;">
@@ -137,6 +150,7 @@ document.getElementById('add-todo-form').addEventListener('submit', async (e) =>
   e.preventDefault();
 
   // TODO: Add new todo due date field below
+  const todoDueDateValue = document.getElementById('new-todo-due-date').value;  
 
   const reqBody = {
     todo: {
@@ -145,6 +159,7 @@ document.getElementById('add-todo-form').addEventListener('submit', async (e) =>
       desc: document.getElementById('new-todo-desc').value,
       completed: document.getElementById('new-todo-completed').checked,
       // TODO: Add the todo due date to the request body
+      due_date: todoDueDateValue ? formatDateToSQLite(new Date(todoDueDateValue)) : null
     }
   };
 
@@ -159,6 +174,7 @@ document.getElementById('add-todo-form').addEventListener('submit', async (e) =>
       document.getElementById('new-todo-desc').value = '';
       document.getElementById('new-todo-completed').checked = false;
       // TODO: Reset the new todo due date field
+      document.getElementById('new-todo-due-date').value = '';
       renderTodos();
     }
   } catch (error) {
@@ -174,6 +190,7 @@ document.getElementById('todo-list').addEventListener('click', async (e) => {
   const todoId = todoLI.dataset.id;
 
   // TODO: Add edit todo due date field below
+  const todoDueDateValue = todoLI.querySelector('.edit-todo-due-date').value;
 
   // Todo update
   if (e.target.classList.contains('update-btn')) {
@@ -184,6 +201,7 @@ document.getElementById('todo-list').addEventListener('click', async (e) => {
         desc: todoLI.querySelector('.edit-desc').value,
         completed: todoLI.querySelector('.edit-completed').checked,
         // TODO: Add the todo due date to the request body
+        due_date: todoDueDateValue ? formatDateToSQLite(new Date(todoDueDateValue)) : null
       }
     };
     try {
@@ -212,6 +230,7 @@ document.getElementById('todo-list').addEventListener('click', async (e) => {
     const subtodoId = subtodoLI.dataset.subtodoId;
 
     // TODO: Add edit subtodo due date field below
+    const subtodoDueDateValue = subtodoLI.querySelector('.edit-subtodo-due-date').value;
 
     const reqBody = {
       todo: {
@@ -220,6 +239,7 @@ document.getElementById('todo-list').addEventListener('click', async (e) => {
         desc: todoLI.querySelector('.edit-desc').value,
         completed: todoLI.querySelector('.edit-completed').checked,
         // TODO: Add the todo due date to the request body
+        due_date: todoDueDateValue ? formatDateToSQLite(new Date(todoDueDateValue)) : null
       },
       subtodo: {
         id: subtodoId,
@@ -228,6 +248,7 @@ document.getElementById('todo-list').addEventListener('click', async (e) => {
         desc: subtodoLI.querySelector('.edit-subtodo-desc').value,
         completed: subtodoLI.querySelector('.edit-subtodo-completed').checked,
         // TODO: Add the subtodo due date to the request body
+        due_date: subtodoDueDateValue ? formatDateToSQLite(new Date(subtodoDueDateValue)) : null
       }
     };
     try {
@@ -256,6 +277,7 @@ document.getElementById('todo-list').addEventListener('click', async (e) => {
         desc: todoLI.querySelector('.edit-desc').value,
         completed: todoLI.querySelector('.edit-completed').checked,
         // TODO: Add the todo due date to the request body
+        due_date: todoDueDateValue ? formatDateToSQLite(new Date(todoDueDateValue)) : null
       }
     }
     try {
@@ -283,6 +305,8 @@ document.getElementById('todo-list').addEventListener('submit', async (e) => {
   const todoId = todoLI.dataset.id;
 
   // TODO: Add new todo and subtodo due date field below
+  const todoDueDateValue = todoLI.querySelector('.edit-todo-due-date').value;
+  const subtodoDueDateValue = form.querySelector('.new-subtodo-due-date').value;
 
   const reqBody = {
     todo: {
@@ -291,6 +315,7 @@ document.getElementById('todo-list').addEventListener('submit', async (e) => {
       desc: todoLI.querySelector('.edit-desc').value,
       completed: todoLI.querySelector('.edit-completed').checked,
       // TODO: Add the todo due date to the request body
+      due_date: todoDueDateValue ? formatDateToSQLite(new Date(todoDueDateValue)) : null
     },
     subtodo: {
       id: crypto.randomUUID(),
@@ -299,6 +324,7 @@ document.getElementById('todo-list').addEventListener('submit', async (e) => {
       desc: form.querySelector('.new-subtodo-desc').value,
       completed: form.querySelector('.new-subtodo-completed').checked,
       // TODO: Add the subtodo due date to the request body
+      due_date: subtodoDueDateValue ? formatDateToSQLite(new Date(subtodoDueDateValue)) : null
     }
   };
 

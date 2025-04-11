@@ -71,7 +71,8 @@ def sql_subtodos_get(
       todo_id = row['todo_id'],
       title = row['title'],
       desc = row['desc'],
-      completed = bool(row['completed'])
+      completed = bool(row['completed']),
+      due_date = row['due_date']
     ) for row in subtodo_rows
   ]
   

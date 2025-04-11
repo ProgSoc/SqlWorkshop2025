@@ -80,7 +80,8 @@ def sql_todos_get(
       id = row['id'],
       title = row['title'],
       desc = row['desc'],
-      completed = bool(row['completed'])
+      completed = bool(row['completed']),
+      due_date = row['due_date'],
     ) for row in todo_rows
   ]
   

@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from typing import TypedDict
 from http import HTTPStatus
+from datetime import datetime
 
 from app.type_defs import BaseResBody, Todo
 from .sql.sql_todo_upd import sql_todo_upd
@@ -21,6 +22,7 @@ def todo_upd(
   """Update a todo."""
   
   data: _ReqBody = request.get_json()
+  data['todo']['due_date'] = datetime.fromisoformat(data['todo']['due_date'])
   
   upd_res = sql_todo_upd(data)
   if upd_res.is_err():

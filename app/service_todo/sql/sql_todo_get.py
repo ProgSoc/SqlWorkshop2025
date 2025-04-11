@@ -41,5 +41,6 @@ def sql_todo_get(
     id = todo['id'],
     title = todo['title'],
     desc = todo['desc'],
-    completed = bool(todo['completed'])
+    completed = bool(todo['completed']),
+    due_date = todo['due_date'],
   ))

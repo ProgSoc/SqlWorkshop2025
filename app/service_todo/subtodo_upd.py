@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from typing import TypedDict
 from http import HTTPStatus
+from datetime import datetime
 
 from app.type_defs import BaseResBody, SubTodo, Todo
 from .sql.sql_subtodo_upd import sql_subtodo_upd
@@ -23,6 +24,8 @@ def subtodo_upd(
   """Update a subtodo."""
   
   data: _ReqBody = request.get_json()
+  data['todo']['due_date'] = datetime.fromisoformat(data['todo']['due_date'])
+  data['subtodo']['due_date'] = datetime.fromisoformat(data['subtodo']['due_date'])
   
   upd_res = sql_subtodo_upd({
     'subtodo': data['subtodo'],

@@ -21,10 +21,10 @@ def sql_todo_upd(
     conn,
     """
     UPDATE todo
-    SET title = ?, desc = ?, completed = ?, updated_at = CURRENT_TIMESTAMP
+    SET title = ?, desc = ?, completed = ?, due_date = ?, updated_at = CURRENT_TIMESTAMP
     WHERE id = ?;
     """,
-    (todo['title'], todo['desc'], todo['completed'], todo['id'])
+    (todo['title'], todo['desc'], todo['completed'], todo['due_date'], todo['id'])
   )
   if cursor_res.is_err():
     err = cursor_res.unwrap_err()

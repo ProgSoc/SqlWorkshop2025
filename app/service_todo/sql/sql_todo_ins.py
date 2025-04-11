@@ -19,10 +19,10 @@ def sql_todo_ins(
   cursor_res = sql_exec(
     conn,
     """
-    INSERT INTO todo (id, title, desc, completed)
-    VALUES (?, ?, ?, ?);
+    INSERT INTO todo (id, title, desc, completed, due_date)
+    VALUES (?, ?, ?, ?, ?);
     """,
-    (todo['id'], todo['title'], todo['desc'], todo['completed'])
+    (todo['id'], todo['title'], todo['desc'], todo['completed'], todo['due_date'])
   )  
   if cursor_res.is_err():
     err = cursor_res.unwrap_err()

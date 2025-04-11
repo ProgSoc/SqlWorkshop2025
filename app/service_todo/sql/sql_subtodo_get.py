@@ -41,5 +41,6 @@ def sql_subtodo_get(
     id = subtodo['id'],
     title = subtodo['title'],
     desc = subtodo['desc'],
-    completed = bool(subtodo['completed'])
+    completed = bool(subtodo['completed']),
+    due_date = subtodo['due_date']
   ))

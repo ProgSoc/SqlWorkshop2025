@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from typing import TypedDict
 from http import HTTPStatus
+from datetime import datetime
 
 from . import service_todo_bp
 from app.type_defs import BaseResBody, SubTodo, Todo
@@ -23,6 +24,8 @@ def subtodo_ins(
   """Insert a new subtodo for a given parent todo."""
   
   data: _ReqBody = request.get_json()
+  data['todo']['due_date'] = datetime.fromisoformat(data['todo']['due_date'])
+  data['subtodo']['due_date'] = datetime.fromisoformat(data['subtodo']['due_date'])
   
   ins_res = sql_subtodo_ins({
     'subtodo': data['subtodo']
