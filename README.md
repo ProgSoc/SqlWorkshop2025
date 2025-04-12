@@ -15,11 +15,11 @@ Activities include:
 
 - [Python 3.7 or later](https://www.python.org/downloads/)
 
-> Start by using the file `workshop.ipynb` for the workshop instructions.
-
 ## Todo App
 
 This repository includes a Python Flask web site, made for demonstration purposes only.
+
+> Start by using the file `workshop.ipynb` for the workshop instructions.
 
 ### Directory structure
 
