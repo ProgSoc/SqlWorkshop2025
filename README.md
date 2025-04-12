@@ -82,13 +82,27 @@ SqlWorkshop2025/
 
 ### Local development
 
-1. Run the server:
+1. [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository) or [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository) and then clone the repository locally from GitHub.
+
+2. Run the server:
 
     ```console
     python3 -m flask run --port 5000 --debug
     ```
 
-2. Click '<http://127.0.0.1:5000>' in the terminal. The website should be opened in a new browser tab.
+3. Click '<http://127.0.0.1:5000>' in the terminal. The website should be opened in a new browser tab.
+
+### Notes on debugging
+
+- To debug the application, you can use the following methods:
+  - Use `print()` statements in the code to output values to the terminal.
+  - Use a debugger like `pdb` or an IDE with debugging capabilities (e.g., PyCharm, VSCode).
+  - Use browser developer tools to inspect network requests and responses.
+- To test the API, you can use tools like [Postman](https://www.postman.com/) or [curl](https://curl.se/). For example, to get all todos, you can run:
+
+    ```shell
+    curl http://127.0.0.1:5000/api/todos
+    ```
 
 ## Resources
 
